@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Scrollama</title>
+
+    <style>
+        
+        .step {
+            width: 300px;
+            height: 300px;
+            margin: 500px auto;
+        }
+        .step:nth-of-type(1) {
+            background: red;
+        }
+        .step:nth-of-type(2) {
+            background: black;
+        }
+        .step:nth-of-type(3) {
+            background: green;
+        }
+    </style>
+</head>
+<body>
+
+<!-- container = ".scroll" -->
+<div class='scroll'>
+  <!-- graphic = ".scroll__graphic" -->
+  <div class='scroll__graphic'>
+    <!--graphic / chart code here-->
+  </div>
+  <div class='scroll__text'>
+    <!-- steps = ".step" -->
+    <div class='step' data-step='a'></div>
+    <div class='step' data-step='b'></div>
+    <div class='step' data-step='c'></div>
+  </div>
+</div>
+
+<script src='https://unpkg.com/intersection-observer'></script>
+<script src='https://unpkg.com/scrollama'></script>
+
+
+<script>
+// instantiate the scrollama
+const scroller = scrollama();
+
+// setup the instance, pass callback functions
+scroller
+  .setup({
+    step: '.scroll__text .step', // required
+    container: '.scroll', // required (for sticky)
+    graphic: '.scroll__graphic' // required (for sticky)
+  })
+  .onStepEnter(handleStepEnter)
+  .onStepExit(handleStepExit)
+  .onContainerEnter(handleContainerEnter)
+  .onContainerExit(handleContainerExit);
+
+</script>
+
+
+</body>
+</html>
